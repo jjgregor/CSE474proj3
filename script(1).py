@@ -110,15 +110,51 @@ def blrObjFunction(params, *args):
         error_grad: the vector of size (D+1) x 1 representing the gradient of
                     error function
     """
-    n_data = train_data.shape[0];
-    n_feature = train_data.shape[1];
-    error = 0;
-    error_grad = np.zeros((n_feature+1,1));
-    
+
     ##################
     # YOUR CODE HERE #
     ##################
-    
+
+    w = params
+    train_data, labeli = args
+    n_data = train_data.shape[0];  #50000
+    n_feature = train_data.shape[1]; #715
+    error_grad = np.zeros((n_feature+1,1));
+
+    w = np.matrix(w)
+    #print w.shape
+
+    #print w[0,:]
+
+    #add bias to front of train_data
+    bias = np.ones((train_data.shape[0],1))
+    train_data = np.hstack((bias, train_data))
+
+    #duplicate weight vector to 50000,716
+    w2 = np.tile(w, (train_data.shape[0], 1))
+
+    #calculate Y
+
+    Y = sigmoid(np.multiply(w2, train_data))
+    print Y.shape
+    #print Y
+    #print Y.shape
+    print labeli.shape
+    #error function
+    #print labeli
+    a = np.dot(np.transpose(labeli), np.log(Y))
+    b = np.dot(np.transpose(1-labeli), np.log(1-Y))
+    c = a+b
+    error = np.sum(c)
+    error = -error
+
+    label2 = np.tile(labeli, (1, Y.shape[1]))
+    error_grad = np.dot(Y-label2, train_data)
+    print error_grad.shape
+
+
+
+
     return error, error_grad
 
 def blrPredict(W, data):
