@@ -122,8 +122,8 @@ def blrObjFunction(params, *args):
     error_grad = np.zeros((n_feature+1, 1));
 
     w = np.matrix(w)
-    #print w.shape
-
+    w = w.T
+    print w.shape
     #print w[0,:]
 
     #add bias to front of train_data
@@ -131,23 +131,28 @@ def blrObjFunction(params, *args):
     train_data = np.hstack((bias, train_data))
 
     #duplicate weight vector to 50000,716
-    w2 = np.tile(w, (train_data.shape[0], 1))
+    #w2 = np.tile(w, (train_data.shape[0], 1))
+
+    w2 = np.reshape(w,(716,1))
 
     #calculate Y
-    Y = sigmoid(np.dot(train_data, w2.T))
+    Y = sigmoid(np.dot(train_data, w2))
 
     #error function
     #a = np.mult(np.transpose(labeli), np.log(Y))
     #b = np.dot(np.transpose(1-labeli), np.log(1-Y))
     a = labeli * np.log(Y)
-    b = (1.0 - labeli) * np.log(1.0 -y)
+    b = (1.0 - labeli) * np.log(1.0 -Y)
     c = a+b
     error = np.sum(c)
     error = -error
 
-    label2 = np.tile(labeli, (1, Y.shape[1]))
-    a = Y - label2
-    error_grad = np.multiply(a, train_data)
+    #label2 = np.tile(labeli, (1, Y.shape[1]))
+    #a = Y - label2
+    #error_grad = np.multiply(a, train_data)
+
+    a = ( Y - labeli) * train_data
+    error_grad = np.sum(a, axis=0)
 
     print(error_grad.shape)
 
