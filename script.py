@@ -123,8 +123,6 @@ def blrObjFunction(params, *args):
 
     w = np.matrix(w)
     w = w.T
-    print w.shape
-    #print w[0,:]
 
     #add bias to front of train_data
     bias = np.ones((train_data.shape[0], 1))
