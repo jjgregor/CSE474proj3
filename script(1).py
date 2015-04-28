@@ -119,7 +119,7 @@ def blrObjFunction(params, *args):
     train_data, labeli = args
     n_data = train_data.shape[0];  #50000
     n_feature = train_data.shape[1]; #715
-    error_grad = np.zeros((n_feature+1,1));
+    error_grad = np.zeros((n_feature+1, 1));
 
     w = np.matrix(w)
     #print w.shape
@@ -127,29 +127,28 @@ def blrObjFunction(params, *args):
     #print w[0,:]
 
     #add bias to front of train_data
-    bias = np.ones((train_data.shape[0],1))
+    bias = np.ones((train_data.shape[0], 1))
     train_data = np.hstack((bias, train_data))
 
     #duplicate weight vector to 50000,716
     w2 = np.tile(w, (train_data.shape[0], 1))
 
     #calculate Y
+    Y = sigmoid(np.dot(train_data, w2.T))
 
-    Y = sigmoid(np.multiply(w2, train_data))
-    print Y.shape
-    #print Y
-    #print Y.shape
-    print labeli.shape
     #error function
-    #print labeli
-    a = np.dot(np.transpose(labeli), np.log(Y))
-    b = np.dot(np.transpose(1-labeli), np.log(1-Y))
+    #a = np.mult(np.transpose(labeli), np.log(Y))
+    #b = np.dot(np.transpose(1-labeli), np.log(1-Y))
+    a = labeli * np.log(Y)
+    b = (1.0 - labeli) * np.log(1.0 -y)
     c = a+b
     error = np.sum(c)
     error = -error
 
     label2 = np.tile(labeli, (1, Y.shape[1]))
-    error_grad = np.dot(Y-label2, train_data)
+    a = Y - label2
+    error_grad = np.multiply(a, train_data)
+
     print error_grad.shape
 
 
@@ -184,7 +183,7 @@ def blrPredict(W, data):
 """
 Script for Logistic Regression
 """
-train_data, train_label, validation_data,validation_label, test_data, test_label = preprocess();
+train_data, train_label, validation_data, validation_label, test_data, test_label = preprocess();
 
 # number of classes
 n_class = 10;
@@ -197,17 +196,17 @@ n_feature = train_data.shape[1];
 
 T = np.zeros((n_train, n_class));
 for i in range(n_class):
-    T[:,i] = (train_label == i).astype(int).ravel();
-    
+    T[:, i] = (train_label == i).astype(int).ravel();
+
 # Logistic Regression with Gradient Descent
 W = np.zeros((n_feature+1, n_class));
-initialWeights = np.zeros((n_feature+1,1));
+initialWeights = np.zeros((n_feature+1, 1));
 opts = {'maxiter' : 50};
 for i in range(n_class):
-    labeli = T[:,i].reshape(n_train,1);
+    labeli = T[:, i].reshape(n_train,1);
     args = (train_data, labeli);
     nn_params = minimize(blrObjFunction, initialWeights, jac=True, args=args,method='CG', options=opts)
-    W[:,i] = nn_params.x.reshape((n_feature+1,));
+    W[:, i] = nn_params.x.reshape((n_feature+1,));
 
 # Find the accuracy on Training Dataset
 predicted_label = blrPredict(W, train_data);
