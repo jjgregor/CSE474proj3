@@ -182,6 +182,16 @@ def blrPredict(W, data):
     # YOUR CODE HERE #
     ##################
 
+    # add bias of all ones to beginning
+    #add bias to front of train_data
+    bias = np.ones((data.shape[0], 1))
+    data = np.hstack((bias, data))
+
+    # label is np.argmax of what is returned by sigmoid
+    a = sigmoid(np.dot(data,W))
+    label = np.argmax(a, 1)
+
+
     return label
 
 
@@ -217,8 +227,14 @@ for i in range(n_class):
 
 # Find the accuracy on Training Dataset
 predicted_label = blrPredict(W, train_data);
-print('\n Training set Accuracy:' + str(100*np.mean((predicted_label == train_label).astype(float))) + '%')
+#print('\n Training set Accuracy:' + str(100*np.mean((predicted_label == train_label).astype(float))) + '%')
+correct = 0
+for i in range(predicted_label.shape[0]):
+    if predicted_label[i] == train_label[i]:
+        correct += 1
+print(correct/predicted_label.shape[0])
 
+'''
 # Find the accuracy on Validation Dataset
 predicted_label = blrPredict(W, validation_data);
 print('\n Validation set Accuracy:' + str(100*np.mean((predicted_label == validation_label).astype(float))) + '%')
@@ -226,7 +242,7 @@ print('\n Validation set Accuracy:' + str(100*np.mean((predicted_label == valida
 # Find the accuracy on Testing Dataset
 predicted_label = blrPredict(W, test_data);
 print('\n Testing set Accuracy:' + str(100*np.mean((predicted_label == test_label).astype(float))) + '%')
-
+'''
 """
 Script for Support Vector Machine
 """
