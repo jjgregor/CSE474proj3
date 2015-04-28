@@ -2,6 +2,8 @@ import numpy as np
 from scipy.optimize import minimize
 from scipy.io import loadmat
 from math import sqrt
+from sklearn import svm, metrics
+
 
 def preprocess():
     """ 
@@ -248,4 +250,15 @@ print('\n\n--------------SVM-------------------\n\n')
 ##################
 # YOUR CODE HERE #
 ##################
+
+clf = svm.SVC(gamma=0.001, C=100)
+clf.fit(train_data, train_label)
+
+predicted = clf.predict(test_data)
+
+print("Classification report for classifier %s:\n%s\n"
+      % (clf, metrics.classification_report(test_label, predicted)))
+print("Confusion matrix:\n%s" % metrics.confusion_matrix(test_label, predicted))
+
+
 
