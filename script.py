@@ -139,8 +139,8 @@ def blrObjFunction(params, *args):
     #error function
     #a = np.mult(np.transpose(labeli), np.log(Y))
     #b = np.dot(np.transpose(1-labeli), np.log(1-Y))
-    a = labeli * np.log(Y)
-    b = (1.0 - labeli) * np.log(1.0 -Y)
+    a = np.multiply(labeli, np.log(Y))
+    b = np.multiply((1.0 - labeli),np.log(1.0 -Y))
     c = a+b
     error = np.sum(c)
     error = -error
@@ -149,13 +149,16 @@ def blrObjFunction(params, *args):
     #a = Y - label2
     #error_grad = np.multiply(a, train_data)
 
-    a = ( Y - labeli) * train_data
+    print(labeli.shape)
+    print(train_data.shape)
+    print(Y.shape)
+    print((Y - labeli).shape)
+
+    a = (Y - labeli) * train_data
+    print(a.shape)
     error_grad = np.sum(a, axis=0)
 
     print(error_grad.shape)
-
-
-
 
     return error, error_grad
 
