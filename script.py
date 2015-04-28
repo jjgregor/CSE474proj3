@@ -252,6 +252,7 @@ print('\n\n--------------SVM-------------------\n\n')
 ##################
 
 clf = svm.SVC(gamma=0.001, C=100)
+train_label2 = np.squeeze(np.asarray(train_label.T))
 clf.fit(train_data, train_label)
 
 predicted = clf.predict(test_data)
