@@ -270,13 +270,10 @@ test_label = test_label[:5]
 train_label2 = np.squeeze(np.asarray(train_label.T))
 
 print(train_data.shape)
-print (train_label.shape)
-print (train_label2.shape)
-
 print("dsdasdasd")
-print(train_label2[:5].shape)
+print(train_label2.shape)
 
-print(train_data[:5,:].shape)
+
 
 # linear
 clf = svm.SVC(kernel='linear').fit(train_data, train_label2)
