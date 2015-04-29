@@ -216,7 +216,7 @@ for i in range(n_class):
 W = np.zeros((n_feature+1, n_class));
 initialWeights = np.zeros((n_feature+1, 1));
 opts = {'maxiter' : 50};
-#opts = {'maxiter' : 5}
+
 for i in range(n_class):
     print(i)
     labeli = T[:, i].reshape(n_train,1);
@@ -245,21 +245,51 @@ print('\n Testing set Accuracy:' + str(100*np.mean((predicted_label == test_labe
 """
 Script for Support Vector Machine
 """
+# PICKLE
+# pickle_output = open('/Users/Jason/workspace/CSE474proj3/pickle_output', 'wb')
+# p = pickle.Pickler(pickle_output)
+# p.dump((W))
+# pickle_output.close()
 
 print('\n\n--------------SVM-------------------\n\n')
 ##################
 # YOUR CODE HERE #
 ##################
 
-clf = svm.SVC(gamma=0.001, C=100)
 train_label2 = np.squeeze(np.asarray(train_label.T))
-clf.fit(train_data, train_label2)
 
-predicted = clf.predict(test_data)
+# linear
+clf = svm.SVC(kernel='linear').fit(train_data, train_label2)
+testScore = clf.score(test_data, test_label)
+validationScore = clf.score(validation_data, validation_label)
+trainScore = clf.score(train_data, train_label)
+#predicted = clf.predict(test_data)
 
-print("Classification report for classifier %s:\n%s\n"
-      % (clf, metrics.classification_report(test_label, predicted)))
-print("Confusion matrix:\n%s" % metrics.confusion_matrix(test_label, predicted))
+print("-----------------Linear-----------------")
+print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore,validationScore,trainScore))
 
+#print("Classification report for classifier %s:\n%s\n"
+#      % (clf, metrics.classification_report(test_label, predicted)))
+#print("Confusion matrix:\n%s" % metrics.confusion_matrix(test_label, predicted))
+
+#RBF with a gamma=1
+clf = svm.SVC(gamma=1).fit(train_data, train_label2)
+testScore = clf.score(test_data, test_label)
+validationScore = clf.score(validation_data, validation_label)
+trainScore = clf.score(train_data, train_label)
+#predicted = clf.predict(test_data)
+print("-----------------Gamma=1-----------------")
+print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore,validationScore,trainScore))
+
+#default
+clf = svm.SVC().fit(train_data, train_label2)
+testScore = clf.score(test_data, test_label)
+validationScore = clf.score(validation_data, validation_label)
+trainScore = clf.score(train_data, train_label)
+#predicted = clf.predict(test_data)
+print("-----------------Default-----------------")
+print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore,validationScore,trainScore))
+
+#gamma value
 
 
