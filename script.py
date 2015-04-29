@@ -215,7 +215,7 @@ for i in range(n_class):
 # Logistic Regression with Gradient Descent
 W = np.zeros((n_feature+1, n_class));
 initialWeights = np.zeros((n_feature+1, 1));
-pts = {'maxiter' : 50};
+opts = {'maxiter' : 50};
 #opts = {'maxiter' : 5}
 for i in range(n_class):
     print(i)
