@@ -258,15 +258,15 @@ print('\n\n--------------SVM-------------------\n\n')
 
 train_label2 = np.squeeze(np.asarray(train_label.T))
 
-# linear
-clf = svm.SVC(kernel='linear').fit(train_data, train_label2)
-testScore = clf.score(test_data, test_label)
-validationScore = clf.score(validation_data, validation_label)
-trainScore = clf.score(train_data, train_label)
-#predicted = clf.predict(test_data)
-
-print("-----------------Linear-----------------")
-print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore, validationScore, trainScore))
+# # linear
+# clf = svm.SVC(kernel='linear').fit(train_data, train_label2)
+# testScore = clf.score(test_data, test_label)
+# validationScore = clf.score(validation_data, validation_label)
+# trainScore = clf.score(train_data, train_label)
+# #predicted = clf.predict(test_data)
+#
+# print("-----------------Linear-----------------")
+# print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore, validationScore, trainScore))
 #
 # #print("Classification report for classifier %s:\n%s\n"
 # #      % (clf, metrics.classification_report(test_label, predicted)))
@@ -281,15 +281,15 @@ print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore, vali
 # print("-----------------Gamma=1-----------------")
 # print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore,validationScore,trainScore))
 #
-# #default
-# clf = svm.SVC().fit(train_data, train_label2)
-# testScore = clf.score(test_data, test_label)
-# validationScore = clf.score(validation_data, validation_label)
-# trainScore = clf.score(train_data, train_label)
-# #predicted = clf.predict(test_data)
-# print("-----------------Default-----------------")
-# print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore,validationScore,trainScore))
-#
+#default
+clf = svm.SVC().fit(train_data, train_label2)
+testScore = clf.score(test_data, test_label)
+validationScore = clf.score(validation_data, validation_label)
+trainScore = clf.score(train_data, train_label)
+#predicted = clf.predict(test_data)
+print("-----------------Default-----------------")
+print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore,validationScore,trainScore))
+
 # #gamma value
 #
 
