@@ -283,7 +283,7 @@ train_label2 = np.squeeze(np.asarray(train_label.T))
 #
 #default
 
-f = open('output', 'w')
+f = open('output', 'r+')
 value = "HERERERERERERERE"
 value = str(value)
 f.write(value)
