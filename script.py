@@ -283,11 +283,6 @@ train_label2 = np.squeeze(np.asarray(train_label.T))
 #
 #default
 
-f = open('output', 'w')
-value = "HERERERERERERERE"
-s = str(value)
-f.write('HELLO... IS IT ME YOURE LOOKING FOR')
-
 print("___________STARTING DEFAULT__________")
 clf = svm.SVC().fit(train_data, train_label2)
 print("___________end clf : start test score__________")
@@ -299,10 +294,6 @@ trainScore = clf.score(train_data, train_label)
 #predicted = clf.predict(test_data)
 print("-----------------Default-----------------")
 print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore, validationScore, trainScore))
-answer = ("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore, validationScore, trainScore))
-answer = str(answer)
-f.write(answer)
-
 
 # #gamma value
 #
