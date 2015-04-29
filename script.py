@@ -257,12 +257,13 @@ print('\n\n--------------SVM-------------------\n\n')
 ##################
 
 # Smaller Data sizes
+print(train_label.shape)
 train_data = train_data[5, :]
-train_label = train_label[5, :]
+train_label = train_label[:5]
 validation_data = validation_data[5, :]
-validation_label = validation_label[5, :]
+validation_label = validation_label[:5]
 test_data = test_data[5, :]
-test_label = test_label[5, :]
+test_label = test_label[:5]
 
 
 train_label2 = np.squeeze(np.asarray(train_label.T))
