@@ -256,24 +256,7 @@ print('\n\n--------------SVM-------------------\n\n')
 # YOUR CODE HERE #
 ##################
 
-# Smaller Data sizes
-print(train_label.shape)
-print(train_data.shape)
-train_data = train_data[:1000, :]
-train_label = train_label[:1000]
-validation_data = validation_data[:1000, :]
-validation_label = validation_label[:1000]
-test_data = test_data[:1000, :]
-test_label = test_label[:1000]
-
-
 train_label2 = np.squeeze(np.asarray(train_label.T))
-
-print(train_data.shape)
-print("dsdasdasd")
-print(train_label2.shape)
-
-
 
 # linear
 clf = svm.SVC(kernel='linear').fit(train_data, train_label2)
@@ -283,30 +266,30 @@ trainScore = clf.score(train_data, train_label)
 #predicted = clf.predict(test_data)
 
 print("-----------------Linear-----------------")
-print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore,validationScore,trainScore))
-
-#print("Classification report for classifier %s:\n%s\n"
-#      % (clf, metrics.classification_report(test_label, predicted)))
-#print("Confusion matrix:\n%s" % metrics.confusion_matrix(test_label, predicted))
-
-#RBF with a gamma=1
-clf = svm.SVC(gamma=1).fit(train_data, train_label2)
-testScore = clf.score(test_data, test_label)
-validationScore = clf.score(validation_data, validation_label)
-trainScore = clf.score(train_data, train_label)
-#predicted = clf.predict(test_data)
-print("-----------------Gamma=1-----------------")
-print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore,validationScore,trainScore))
-
-#default
-clf = svm.SVC().fit(train_data, train_label2)
-testScore = clf.score(test_data, test_label)
-validationScore = clf.score(validation_data, validation_label)
-trainScore = clf.score(train_data, train_label)
-#predicted = clf.predict(test_data)
-print("-----------------Default-----------------")
-print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore,validationScore,trainScore))
-
-#gamma value
-
+print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore, validationScore, trainScore))
+#
+# #print("Classification report for classifier %s:\n%s\n"
+# #      % (clf, metrics.classification_report(test_label, predicted)))
+# #print("Confusion matrix:\n%s" % metrics.confusion_matrix(test_label, predicted))
+#
+# #RBF with a gamma=1
+# clf = svm.SVC(gamma=1).fit(train_data, train_label2)
+# testScore = clf.score(test_data, test_label)
+# validationScore = clf.score(validation_data, validation_label)
+# trainScore = clf.score(train_data, train_label)
+# #predicted = clf.predict(test_data)
+# print("-----------------Gamma=1-----------------")
+# print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore,validationScore,trainScore))
+#
+# #default
+# clf = svm.SVC().fit(train_data, train_label2)
+# testScore = clf.score(test_data, test_label)
+# validationScore = clf.score(validation_data, validation_label)
+# trainScore = clf.score(train_data, train_label)
+# #predicted = clf.predict(test_data)
+# print("-----------------Default-----------------")
+# print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore,validationScore,trainScore))
+#
+# #gamma value
+#
 
