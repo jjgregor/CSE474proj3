@@ -282,6 +282,10 @@ train_label2 = np.squeeze(np.asarray(train_label.T))
 # print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore,validationScore,trainScore))
 #
 #default
+
+f = open('output', 'w')
+f.write('TEST TEST', 42)
+
 print("___________STARTING DEFAULT__________")
 clf = svm.SVC().fit(train_data, train_label2)
 print("___________end clf : start test score__________")
@@ -292,7 +296,10 @@ print("___________end validation score : start train score__________")
 trainScore = clf.score(train_data, train_label)
 #predicted = clf.predict(test_data)
 print("-----------------Default-----------------")
-print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore,validationScore,trainScore))
+print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore, validationScore, trainScore))
+
+f.write("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore, validationScore, trainScore))
+
 
 # #gamma value
 #
