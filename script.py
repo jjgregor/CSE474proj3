@@ -285,8 +285,8 @@ train_label2 = np.squeeze(np.asarray(train_label.T))
 
 f = open('output', 'w')
 value = "HERERERERERERERE"
-value = str(value)
-f.write(value)
+s = str(value)
+f.write(s)
 
 print("___________STARTING DEFAULT__________")
 clf = svm.SVC().fit(train_data, train_label2)
