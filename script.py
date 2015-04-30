@@ -156,8 +156,6 @@ def blrObjFunction(params, *args):
     a = np.multiply((Y - labeli) ,train_data)
     error_grad = np.sum(a, axis=0)
 
-    print (error_grad.shape)
-
     error_grad = np.squeeze(np.asarray(error_grad))
 
     return error, error_grad
