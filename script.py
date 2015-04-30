@@ -133,16 +133,12 @@ def blrObjFunction(params, *args):
     w = w.T
 
     #duplicate weight vector to 50000,716
-    #w2 = np.tile(w, (train_data.shape[0], 1))
     w = np.reshape(w, (716, 1))
-
 
     #calculate Y
     Y = sigmoid(np.dot(train_data, w))
 
     #error function
-    #a = np.mult(np.transpose(labeli), np.log(Y))
-    #b = np.dot(np.transpose(1-labeli), np.log(1-Y))
     a = np.multiply(labeli, np.log(Y))
     b = np.multiply((1.0 - labeli),np.log(1.0 -Y))
     c = a+b
@@ -263,28 +259,28 @@ validation_label= validation_label.reshape(validation_label.shape[0])
 
 clf = SVC(kernel='linear')
 clf.fit(train_data, train_label)
-print('\n\n Accuracy in case of linear kernel and all other parameters as default\n\n')
+print('\n\n Accuracy using linear kernel and all other parameters as default\n\n')
 print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
 print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
 print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
 
 clf = SVC(kernel='rbf', gamma=1.0)
 clf.fit(train_data, train_label)
-print('\n\n Accuracy in case of rbf kernel and gamma value 1 and all other parameters as default\n\n')
+print('\n\n Accuracy using rbf kernel and gamma value 1 and all other parameters as default\n\n')
 print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
 print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
 print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
 
 clf = SVC(kernel='rbf')
 clf.fit(train_data, train_label)
-print('\n\n Accuracy in case of rbf kernel and gamma value default and all other parameters as default\n\n')
+print('\n\n Accuracy using rbf kernel and gamma value default and all other parameters as default\n\n')
 print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
 print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
 print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
 
 clf = SVC(kernel='rbf',C=1)
 clf.fit(train_data, train_label)
-print('\n\n Accuracy in case of rbf kernel and gamma value default and c=1 and all other parameters as default\n\n')
+print('\n\n Accuracy using rbf kernel and gamma value default and c=1 and all other parameters as default\n\n')
 print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
 print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
 print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
@@ -292,7 +288,7 @@ print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '
 for i in range(10,110,10):
      clf = SVC(kernel='rbf', C = i)
      clf.fit(train_data, train_label)
-     print('\n\n Accuracy in case of rbf kernel and gamma value default and C value='+i+'\n\n')
+     print('\n\n Accuracy using rbf kernel and gamma value default and C value = '+i+'\n\n')
      print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
      print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
      print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
