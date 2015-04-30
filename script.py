@@ -238,7 +238,7 @@ correct = 0
 for i in range(predicted_label.shape[0]):
     if predicted_label[i] == train_label[i]:
         correct += 1
-print(correct/predicted_label.shape[0])
+print('\n Training set Accuracy' + str((correct/predicted_label.shape[0]) * 100))
 
 
 #Find the accuracy on Validation Dataset
