@@ -251,96 +251,52 @@ print('\n Testing set Accuracy:' + str(100*np.mean((predicted_label == test_labe
 Script for Support Vector Machine
 """
 
-# print('\n\n--------------SVM-------------------\n\n')
-##################
-# YOUR CODE HERE #
-##################
+print('\n\n--------------SVM-------------------\n\n')
+#################
+YOUR CODE HERE #
+#################
 
-# train_label2 = np.squeeze(np.asarray(train_label.T))
+train_label= train_label.reshape(train_label.shape[0])
+test_label= test_label.reshape(test_label.shape[0])
+validation_label= validation_label.reshape(validation_label.shape[0])
 
-# # linear
-# clf = svm.SVC(kernel='linear').fit(train_data, train_label2)
-# testScore = clf.score(test_data, test_label)
-# validationScore = clf.score(validation_data, validation_label)
-# trainScore = clf.score(train_data, train_label)
-# #predicted = clf.predict(test_data)
-#
-# print("-----------------Linear-----------------")
-# print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore, validationScore, trainScore))
-#
-# #print("Classification report for classifier %s:\n%s\n"
-# #      % (clf, metrics.classification_report(test_label, predicted)))
-# #print("Confusion matrix:\n%s" % metrics.confusion_matrix(test_label, predicted))
-#
-# #RBF with a gamma=1
-# clf = svm.SVC(gamma=1).fit(train_data, train_label2)
-# testScore = clf.score(test_data, test_label)
-# validationScore = clf.score(validation_data, validation_label)
-# trainScore = clf.score(train_data, train_label)
-# #predicted = clf.predict(test_data)
-# print("-----------------Gamma=1-----------------")
-# print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore,validationScore,trainScore))
-#
-#default
-#
-# print("___________STARTING DEFAULT__________")
-# clf = svm.SVC().fit(train_data, train_label2)
-# print("___________end clf : start test score__________")
-# testScore = clf.score(test_data, test_label)
-# print("___________end test score : start validation scroe__________")
-# validationScore = clf.score(validation_data, validation_label)
-# print("___________end validation score : start train score__________")
-# trainScore = clf.score(train_data, train_label)
-# #predicted = clf.predict(test_data)
-# print("-----------------Default-----------------")
-# print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore, validationScore, trainScore))
 
-# #gamma value
+clf = SVC(kernel='linear')
+clf.fit(train_data, train_label)
+print('\n\n Accuracy in case of linear kernel and all other parameters as default\n\n')
+print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
+print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
+print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
 
-print('\n\n---------------END----------------\n\n')
-#
-#
-# print('\n\n--------------SVM-------------------\n\n')
-# train_label= train_label.reshape(train_label.shape[0])
-# test_label= test_label.reshape(test_label.shape[0])
-# validation_label= validation_label.reshape(validation_label.shape[0])
-# print('\n\n Accuracy in case of linear kernel and all other parameters as default\n\n')
+clf = SVC(kernel='rbf', gamma=1.0)
+clf.fit(train_data, train_label)
+print('\n\n Accuracy in case of rbf kernel and gamma value 1 and all other parameters as default\n\n')
+print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
+print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
+print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
 
-# clf = SVC(kernel='linear')
-# clf.fit(train_data, train_label)
-# print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
-# print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
-# print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
-# print('\n\n Accuracy in case of rbf kernel and gamma value 1 and all other parameters as default\n\n')
-#
-# clf = SVC(kernel='rbf', gamma=1.0)
-# clf.fit(train_data, train_label)
-# print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
-# print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
-# print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
-# print('\n\n Accuracy in case of rbf kernel and gamma value default and all other parameters as default\n\n')
-#
-# clf = SVC(kernel='rbf')
-# clf.fit(train_data, train_label)
-# print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
-# print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
-# print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
-# print('\n\n Accuracy in case of rbf kernel and gamma value default and c=1 and all other parameters as default\n\n')
-#
-# clf = SVC(kernel='rbf',C=1)
-# clf.fit(train_data, train_label)
-# print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
-# print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
-# print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
-#
-# for i in range(10,110,10):
-#      clf = SVC(kernel='rbf', C = i)
-#      clf.fit(train_data, train_label)
-#      print('\n\n Accuracy in case of rbf kernel and gamma value default and C value='+i+'\n\n')
-#      print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
-#      print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
-#      print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
-#
-#
+clf = SVC(kernel='rbf')
+clf.fit(train_data, train_label)
+print('\n\n Accuracy in case of rbf kernel and gamma value default and all other parameters as default\n\n')
+print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
+print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
+print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
+
+clf = SVC(kernel='rbf',C=1)
+clf.fit(train_data, train_label)
+print('\n\n Accuracy in case of rbf kernel and gamma value default and c=1 and all other parameters as default\n\n')
+print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
+print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
+print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
+
+for i in range(10,110,10):
+     clf = SVC(kernel='rbf', C = i)
+     clf.fit(train_data, train_label)
+     print('\n\n Accuracy in case of rbf kernel and gamma value default and C value='+i+'\n\n')
+     print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
+     print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
+     print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
+
+
 
 
