@@ -245,7 +245,7 @@ print(correct/predicted_label.shape[0])
 predicted_label = blrPredict(W, validation_data);
 print('\n Validation set Accuracy:' + str(100*np.mean((predicted_label == validation_label).astype(float))) + '%')
 
-Find the accuracy on Testing Dataset
+#Find the accuracy on Testing Dataset
 predicted_label = blrPredict(W, test_data);
 print('\n Testing set Accuracy:' + str(100*np.mean((predicted_label == test_label).astype(float))) + '%')
 
