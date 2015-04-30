@@ -122,8 +122,8 @@ def blrObjFunction(params, *args):
     w = params
     train_data, labeli = args
 
-    n_data = train_data.shape[0];  #50000
-    n_feature = train_data.shape[1]; #715
+    n_data = train_data.shape[0];
+    n_feature = train_data.shape[1];
     error_grad = np.zeros((n_feature+1, 1));
 
     #add bias to front of train_data
@@ -140,16 +140,12 @@ def blrObjFunction(params, *args):
 
     #error function
     a = np.multiply(labeli, np.log(Y))
-    b = np.multiply((1.0 - labeli),np.log(1.0 -Y))
+    b = np.multiply((1.0 - labeli), np.log(1.0 - Y))
     c = a+b
     error = np.sum(c)
     error = -error
 
-    #label2 = np.tile(labeli, (1, Y.shape[1]))
-    #a = Y - label2
-    #error_grad = np.multiply(a, train_data)
-
-    a = np.multiply((Y - labeli) ,train_data)
+    a = np.multiply((Y - labeli) , train_data)
     error_grad = np.sum(a, axis=0)
 
     error_grad = np.squeeze(np.asarray(error_grad))
@@ -171,19 +167,18 @@ def blrPredict(W, data):
          corresponding feature vector given in data matrix
 
     """
-    label = np.zeros((data.shape[0],1));
+    label = np.zeros((data.shape[0], 1));
     
     ##################
     # YOUR CODE HERE #
     ##################
 
-    # add bias of all ones to beginning
     #add bias to front of train_data
     bias = np.ones((data.shape[0], 1))
     data = np.hstack((bias, data))
 
     # label is np.argmax of what is returned by sigmoid
-    a = sigmoid(np.dot(data,W))
+    a = sigmoid(np.dot(data, W))
     label = np.argmax(a, 1)
     label.resize((data.shape[0], 1))
 
@@ -211,8 +206,7 @@ for i in range(n_class):
 # Logistic Regression with Gradient Descent
 W = np.zeros((n_feature+1, n_class));
 initialWeights = np.zeros((n_feature+1, 1));
-opts = {'maxiter' : 50};
-#opts = {'maxiter' : 5};
+opts = {'maxiter': 50};
 for i in range(n_class):
     print(i)
     labeli = T[:, i].reshape(n_train,1);
@@ -220,7 +214,7 @@ for i in range(n_class):
     nn_params = minimize(blrObjFunction, initialWeights, jac=True, args=args,method='CG', options=opts)
     W[:, i] = nn_params.x.reshape((n_feature+1,));
 
-pickle_file = open('params.pickle','wb')
+pickle_file = open('params.pickle', 'wb')
 pickle.dump([W], pickle_file)
 pickle_file.close()
 
@@ -260,38 +254,38 @@ validation_label= validation_label.reshape(validation_label.shape[0])
 clf = SVC(kernel='linear')
 clf.fit(train_data, train_label)
 print('\n\n Accuracy using linear kernel and all other parameters as default\n\n')
-print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
-print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
-print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
+print('\n Training set Accuracy: ' + str(clf.score(train_data, train_label)*100) + '%')
+print('\n Validation set Accuracy: ' + str(clf.score(validation_data, validation_label)*100) + '%')
+print('\n Testing set Accuracy: ' + str(clf.score(test_data, test_label)*100) + '%')
 
 clf = SVC(kernel='rbf', gamma=1.0)
 clf.fit(train_data, train_label)
 print('\n\n Accuracy using rbf kernel and gamma value 1 and all other parameters as default\n\n')
-print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
-print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
-print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
+print('\n Training set Accuracy: ' + str(clf.score(train_data, train_label)*100) + '%')
+print('\n Validation set Accuracy: ' + str(clf.score(validation_data, validation_label)*100) + '%')
+print('\n Testing set Accuracy: ' + str(clf.score(test_data, test_label)*100) + '%')
 
 clf = SVC(kernel='rbf')
 clf.fit(train_data, train_label)
 print('\n\n Accuracy using rbf kernel and gamma value default and all other parameters as default\n\n')
-print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
-print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
-print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
+print('\n Training set Accuracy: ' + str(clf.score(train_data, train_label)*100) + '%')
+print('\n Validation set Accuracy: ' + str(clf.score(validation_data, validation_label)*100) + '%')
+print('\n Testing set Accuracy: ' + str(clf.score(test_data, test_label)*100) + '%')
 
-clf = SVC(kernel='rbf',C=1)
+clf = SVC(kernel='rbf', C=1)
 clf.fit(train_data, train_label)
 print('\n\n Accuracy using rbf kernel and gamma value default and c=1 and all other parameters as default\n\n')
-print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
-print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
-print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
+print('\n Training set Accuracy: ' + str(clf.score(train_data, train_label)*100) + '%')
+print('\n Validation set Accuracy: ' + str(clf.score(validation_data, validation_label)*100) + '%')
+print('\n Testing set Accuracy: ' + str(clf.score(test_data, test_label)*100) + '%')
 
-for i in range(10,110,10):
-     clf = SVC(kernel='rbf', C = i)
+for i in range(10, 110, 10):
+     clf = SVC(kernel='rbf', C=i)
      clf.fit(train_data, train_label)
      print('\n\n Accuracy using rbf kernel and gamma value default and C value = '+i+'\n\n')
-     print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
-     print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
-     print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
+     print('\n Training set Accuracy: ' + str(clf.score(train_data, train_label)*100) + '%')
+     print('\n Validation set Accuracy: ' + str(clf.score(validation_data, validation_label)*100) + '%')
+     print('\n Testing set Accuracy: ' + str(clf.score(test_data, test_label)*100) + '%')
 
 
 print('\n\n End of project.')
