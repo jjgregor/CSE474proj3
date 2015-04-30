@@ -200,54 +200,54 @@ def blrPredict(W, data):
 Script for Logistic Regression
 """
 train_data, train_label, validation_data, validation_label, test_data, test_label = preprocess();
-#
-# # number of classes
-# n_class = 10;
-#
-# # number of training samples
-# n_train = train_data.shape[0];
-#
-# # number of features
-# n_feature = train_data.shape[1];
-#
-# T = np.zeros((n_train, n_class));
-# for i in range(n_class):
-#     T[:, i] = (train_label == i).astype(int).ravel();
-#
-# # Logistic Regression with Gradient Descent
-# W = np.zeros((n_feature+1, n_class));
-# initialWeights = np.zeros((n_feature+1, 1));
-# #opts = {'maxiter' : 50};
-# opts = {'maxiter' : 5};
-# for i in range(n_class):
-#     print(i)
-#     labeli = T[:, i].reshape(n_train,1);
-#     args = (train_data, labeli);
-#     nn_params = minimize(blrObjFunction, initialWeights, jac=True, args=args,method='CG', options=opts)
-#     W[:, i] = nn_params.x.reshape((n_feature+1,));
-#
-# pickle_file = open('params.pickle','wb')
-# pickle.dump([W], pickle_file)
-# pickle_file.close()
-#
-#
-# # Find the accuracy on Training Dataset
-# predicted_label = blrPredict(W, train_data);
-# #print('\n Training set Accuracy:' + str(100*np.mean((predicted_label == train_label).astype(float))) + '%')
-# correct = 0
-# for i in range(predicted_label.shape[0]):
-#     if predicted_label[i] == train_label[i]:
-#         correct += 1
-# print(correct/predicted_label.shape[0])
-#
-#
-# #Find the accuracy on Validation Dataset
-# predicted_label = blrPredict(W, validation_data);
-# print('\n Validation set Accuracy:' + str(100*np.mean((predicted_label == validation_label).astype(float))) + '%')
-#
-# Find the accuracy on Testing Dataset
-# predicted_label = blrPredict(W, test_data);
-# print('\n Testing set Accuracy:' + str(100*np.mean((predicted_label == test_label).astype(float))) + '%')
+
+# number of classes
+n_class = 10;
+
+# number of training samples
+n_train = train_data.shape[0];
+
+# number of features
+n_feature = train_data.shape[1];
+
+T = np.zeros((n_train, n_class));
+for i in range(n_class):
+    T[:, i] = (train_label == i).astype(int).ravel();
+
+# Logistic Regression with Gradient Descent
+W = np.zeros((n_feature+1, n_class));
+initialWeights = np.zeros((n_feature+1, 1));
+#opts = {'maxiter' : 50};
+opts = {'maxiter' : 5};
+for i in range(n_class):
+    print(i)
+    labeli = T[:, i].reshape(n_train,1);
+    args = (train_data, labeli);
+    nn_params = minimize(blrObjFunction, initialWeights, jac=True, args=args,method='CG', options=opts)
+    W[:, i] = nn_params.x.reshape((n_feature+1,));
+
+pickle_file = open('params.pickle','wb')
+pickle.dump([W], pickle_file)
+pickle_file.close()
+
+
+# Find the accuracy on Training Dataset
+predicted_label = blrPredict(W, train_data);
+#print('\n Training set Accuracy:' + str(100*np.mean((predicted_label == train_label).astype(float))) + '%')
+correct = 0
+for i in range(predicted_label.shape[0]):
+    if predicted_label[i] == train_label[i]:
+        correct += 1
+print(correct/predicted_label.shape[0])
+
+
+#Find the accuracy on Validation Dataset
+predicted_label = blrPredict(W, validation_data);
+print('\n Validation set Accuracy:' + str(100*np.mean((predicted_label == validation_label).astype(float))) + '%')
+
+Find the accuracy on Testing Dataset
+predicted_label = blrPredict(W, test_data);
+print('\n Testing set Accuracy:' + str(100*np.mean((predicted_label == test_label).astype(float))) + '%')
 
 """
 Script for Support Vector Machine
@@ -320,12 +320,12 @@ print('\n\n Accuracy in case of linear kernel and all other parameters as defaul
 # print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
 # print('\n\n Accuracy in case of rbf kernel and gamma value default and all other parameters as default\n\n')
 #
-clf = SVC(kernel='rbf')
-clf.fit(train_data, train_label)
-print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
-print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
-print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
-print('\n\n Accuracy in case of rbf kernel and gamma value default and c=1 and all other parameters as default\n\n')
+# clf = SVC(kernel='rbf')
+# clf.fit(train_data, train_label)
+# print('\n Training set Accuracy: ' +str(clf.score(train_data, train_label)*100) + '%')
+# print('\n Validation set Accuracy: ' +str(clf.score(validation_data, validation_label)*100) + '%')
+# print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
+# print('\n\n Accuracy in case of rbf kernel and gamma value default and c=1 and all other parameters as default\n\n')
 #
 # clf = SVC(kernel='rbf',C=1)
 # clf.fit(train_data, train_label)
