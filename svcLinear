@@ -1,0 +1,12 @@
+--------------SVM-------------------
+
+Data set using linear kernal (all other parameters kept default)
+
+ Training set Accuracy: 97.286%
+
+ Validation set Accuracy: 93.64%
+
+ Testing set Accuracy: 93.78%
+
+
+

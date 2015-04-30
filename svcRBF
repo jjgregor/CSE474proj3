@@ -1,0 +1,14 @@
+--------------SVM-------------------
+
+Data using radial basis function with value of gamma settings to default
+(all other parameters are kept default)
+
+ Training set Accuracy: 94.294%
+
+ Validation set Accuracy: 94.02%
+
+ Testing set Accuracy: 94.42%
+
+
+
+
