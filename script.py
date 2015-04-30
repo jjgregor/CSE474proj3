@@ -246,9 +246,9 @@ print('\n\n--------------SVM-------------------\n\n')
 # YOUR CODE HERE #
 ##################
 
-train_label= train_label.reshape(train_label.shape[0])
-test_label= test_label.reshape(test_label.shape[0])
-validation_label= validation_label.reshape(validation_label.shape[0])
+train_label = train_label.reshape(train_label.shape[0])
+test_label = test_label.reshape(test_label.shape[0])
+validation_label = validation_label.reshape(validation_label.shape[0])
 
 
 clf = SVC(kernel='linear')
