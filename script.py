@@ -252,9 +252,9 @@ Script for Support Vector Machine
 """
 
 print('\n\n--------------SVM-------------------\n\n')
-#################
-YOUR CODE HERE #
-#################
+##################
+# YOUR CODE HERE #
+##################
 
 train_label= train_label.reshape(train_label.shape[0])
 test_label= test_label.reshape(test_label.shape[0])
@@ -298,5 +298,4 @@ for i in range(10,110,10):
      print('\n Testing set Accuracy: ' +str(clf.score(test_data, test_label)*100) + '%')
 
 
-
-
+print('\n\n End of project.')
