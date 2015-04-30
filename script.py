@@ -253,12 +253,12 @@ print('\n Testing set Accuracy:' + str(100*np.mean((predicted_label == test_labe
 Script for Support Vector Machine
 """
 
-print('\n\n--------------SVM-------------------\n\n')
+# print('\n\n--------------SVM-------------------\n\n')
 ##################
 # YOUR CODE HERE #
 ##################
 
-train_label2 = np.squeeze(np.asarray(train_label.T))
+# train_label2 = np.squeeze(np.asarray(train_label.T))
 
 # # linear
 # clf = svm.SVC(kernel='linear').fit(train_data, train_label2)
@@ -298,13 +298,15 @@ train_label2 = np.squeeze(np.asarray(train_label.T))
 # print("Test Score: %d, Validation Score: %d, Train Score: %d" % (testScore, validationScore, trainScore))
 
 # #gamma value
-#
 
-print('\n\n--------------SVM-------------------\n\n')
-train_label= train_label.reshape(train_label.shape[0])
-test_label= test_label.reshape(test_label.shape[0])
-validation_label= validation_label.reshape(validation_label.shape[0])
-print('\n\n Accuracy in case of linear kernel and all other parameters as default\n\n')
+print('\n\n---------------END----------------\n\n')
+#
+#
+# print('\n\n--------------SVM-------------------\n\n')
+# train_label= train_label.reshape(train_label.shape[0])
+# test_label= test_label.reshape(test_label.shape[0])
+# validation_label= validation_label.reshape(validation_label.shape[0])
+# print('\n\n Accuracy in case of linear kernel and all other parameters as default\n\n')
 
 # clf = SVC(kernel='linear')
 # clf.fit(train_data, train_label)
