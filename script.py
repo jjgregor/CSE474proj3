@@ -191,7 +191,7 @@ def blrPredict(W, data):
     # label is np.argmax of what is returned by sigmoid
     a = sigmoid(np.dot(data,W))
     label = np.argmax(a, 1)
-
+    label.resize((data.shape[0], 1))
 
     return label
 
